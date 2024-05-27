@@ -25,7 +25,8 @@ public class Main {
         testCarton.addBook(book4);
 
         System.out.println(testCarton.toString());
-
+        
+        testCarton.addBook(new Book(5, "Encyclopédie Universalis 2014"));
         testCarton.removeBook(book3);
         testCarton.removeBook(book4);
         testCarton.addBook(new Book(5, "Encyclopédie Universalis 2014"));

@@ -68,6 +68,6 @@
   <testcase classname="CartonTest" name="CartonTest.testToString" time="0"/>
   <testcase classname="CartonTest" name="CartonTest.testAddBook" time="0"/>
   <testcase classname="CartonTest" name="CartonTest.testRemoveBook" time="0"/>
-  <testcase classname="CartonTest" name="CartonTest.testAddBookWhenNoSpace" time="0"/>
   <testcase classname="CartonTest" name="CartonTest.testCartonConstructorAndGetters" time="0"/>
+  <testcase classname="CartonTest" name="CartonTest.testAddBookWhenNoSpace" time="0"/>
 </testsuite>

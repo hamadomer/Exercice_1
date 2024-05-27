@@ -22,9 +22,8 @@ public class Carton {
     }
     
     public void addBook(Book bookToAdd) {
-        if (cartonHight - bookToAdd.getBookWidth() >= 0) {
+        if (usedCartonHight + bookToAdd.getBookWidth() <= cartonHight) {
         booksList.add(bookToAdd);
-        cartonHight -= bookToAdd.getBookWidth();
         usedCartonHight += bookToAdd.getBookWidth();
         } else {
             System.out.println("Can't add the book, not enought space");
@@ -33,7 +32,6 @@ public class Carton {
     
     public void removeBook (Book bookToRemove) {
         booksList.remove(bookToRemove);
-        cartonHight += bookToRemove.getBookWidth();
         usedCartonHight -= bookToRemove.getBookWidth();
     }
     
