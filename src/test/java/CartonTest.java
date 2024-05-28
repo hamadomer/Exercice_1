@@ -5,58 +5,34 @@ public class CartonTest {
 
     @Test
     public void testCartonConstructorAndGetters() {
-        Carton carton = new Carton(100);
-        assertEquals(100, carton.getCartonHight());
-        assertEquals(0, carton.getNombreOfBooksInList());
+        Carton carton = new Carton(100, TypeOfCarton.Book);
+        assertEquals(0, carton.getUsedCartonHeight());
+        assertEquals(0, carton.getNumberOfObjectsInList());
+    }
+    
+    @Test
+    public void testCreateCartonsWithDiffrentTypes() {
+        Carton bookCarton = new Carton(100, TypeOfCarton.Book);
+        Carton ballCarton = new Carton(100, TypeOfCarton.Ball);
+        
+        assertEquals("The Carton has 0 objects and the height used is 0", bookCarton.toString());
+        assertEquals("The Carton has 0 objects and the height used is 0", bookCarton.toString());
+        
+        bookCarton.addObject(new Book("The 3 body problem", 30));
+        ballCarton.addObject(new Ball("Basketball", 20));
+        assertEquals("The Carton has 1 objects and the height used is 30", bookCarton.toString());
+        assertEquals("The Carton has 1 objects and the height used is 20", ballCarton.toString());
     }
 
     @Test
-    public void testAddBook() {
-        Carton carton = new Carton(100);
-        Book book1 = new Book(20, "Book1");
-        Book book2 = new Book(30, "Book2");
-        carton.addBook(book1);
-        assertEquals(80, carton.getCartonHight());
-        assertEquals(1, carton.getNombreOfBooksInList());
-        carton.addBook(book2);
-        assertEquals(50, carton.getCartonHight());
-        assertEquals(2, carton.getNombreOfBooksInList());
+    public void testAddBallToBookCarton() {
+        Carton carton = new Carton(100, TypeOfCarton.Book);
+        Book book1 = new Book("Book1", 20);
+        Ball ball = new Ball("Basketball", 30);
+        carton.addObject(book1);
+        assertEquals(20, carton.getUsedCartonHeight());
+        assertEquals(1, carton.getNumberOfObjectsInList());
+        assertEquals("Can't add the class Ball to a carton of type Book", carton.addObject(ball));
     }
-
-    @Test
-    public void testAddBookWhenNoSpace() {
-        Carton carton = new Carton(50);
-        Book book1 = new Book(20, "Book1");
-        Book book2 = new Book(30, "Book2");
-        carton.addBook(book1);
-        assertEquals(30, carton.getCartonHight());
-        assertEquals(1, carton.getNombreOfBooksInList());
-        carton.addBook(book2);
-        assertEquals(0, carton.getCartonHight());
-        assertEquals(2, carton.getNombreOfBooksInList());
-    }
-
-    @Test
-    public void testRemoveBook() {
-        Carton carton = new Carton(100);
-        Book book1 = new Book(20, "Book1");
-        Book book2 = new Book(30, "Book2");
-        carton.addBook(book1);
-        carton.addBook(book2);
-        assertEquals(50, carton.getCartonHight());
-        assertEquals(2, carton.getNombreOfBooksInList());
-        carton.removeBook(book1);
-        assertEquals(70, carton.getCartonHight());
-        assertEquals(1, carton.getNombreOfBooksInList());
-    }
-
-    @Test
-    public void testToString() {
-        Carton carton = new Carton(100);
-        Book book1 = new Book(20, "Book1");
-        Book book2 = new Book(30, "Book2");
-        carton.addBook(book1);
-        carton.addBook(book2);
-        assertEquals("The Carton has 2 books and the hight used is 50", carton.toString());
-    }
+    
 }

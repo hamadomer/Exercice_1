@@ -8,10 +8,9 @@
  *
  * @author USER
  */
-public class Main {
-
-    public static void main(String[] args) {
-        Carton carton = new Carton(100, TypeOfCarton.Cloth);
-        carton.addObject(new Ball("BasketBall", 27));
-    }
+enum TypeOfCarton {
+    Book,
+    Cloth,
+    Figurine,
+    Ball
 }

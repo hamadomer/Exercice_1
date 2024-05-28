@@ -1,57 +1,58 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+public class Carton<T extends Item> {
 
-/**
- *
- * @author Omer
- */
-public class Carton {
-    private int cartonHight;
-    private int usedCartonHight = 0;
-    private ArrayList<Book> booksList;
-    
-    public Carton(int cartonHight) {
-        this.cartonHight = cartonHight;
-        this.booksList = new ArrayList<>();
+    private int cartonHeight;
+    private TypeOfCarton cartonType;
+    private int usedCartonHeight = 0;
+    private List<T> objectsList;
+
+    public Carton(int cartonHeight, TypeOfCarton cartonType) {
+        this.cartonHeight = cartonHeight;
+        this.cartonType = cartonType;
+        this.objectsList = new ArrayList<>();
     }
-    
-    public void addBook(Book bookToAdd) {
-        if (usedCartonHight + bookToAdd.getBookWidth() <= cartonHight) {
-        booksList.add(bookToAdd);
-        usedCartonHight += bookToAdd.getBookWidth();
+
+    public String addObject(T objectToAdd) {
+        if (objectToAdd.getTypeOfCarton() == cartonType) {
+            if (usedCartonHeight + objectToAdd.getSize() <= cartonHeight) {
+                objectsList.add(objectToAdd);
+                usedCartonHeight += objectToAdd.getSize();
+                return "Done";
+            } else {
+                return "Can't add the " + objectToAdd.getClass() + ", not enough space";
+            }
         } else {
-            System.out.println("Can't add the book, not enought space");
+           return "Can't add the " + objectToAdd.getClass() + " to a carton of type " + cartonType;
         }
     }
-    
-    public void removeBook (Book bookToRemove) {
-        booksList.remove(bookToRemove);
-        usedCartonHight -= bookToRemove.getBookWidth();
+
+    public void removeObject(T objectToRemove) {
+        if (objectsList.remove(objectToRemove)) {
+            usedCartonHeight -= objectToRemove.getSize();
+        }
     }
-    
-    public int getNombreOfBooksInList() {
-        return booksList.size();
+
+    public int getNumberOfObjectsInList() {
+        return objectsList.size();
     }
-    
-    public int getCartonHight() {
-        return this.cartonHight;
+
+    public int getUsedCartonHeight() {
+        return this.usedCartonHeight;
     }
-    
-    public void printAllBooks() {
-        booksList.forEach(book -> {
-            System.out.println(book.getBookTitle());
-        });
+
+    public TypeOfCarton getCartonType() {
+        return this.cartonType;
     }
-    
-    
+
+    public void printAllObjects() {
+        objectsList.forEach(object -> System.out.println(object.getName()));
+    }
+
     @Override
     public String toString() {
-        return String.format("The Carton has %d books and the hight used is %d", getNombreOfBooksInList(), usedCartonHight);
+        return String.format("The Carton has %d objects and the height used is %d", getNumberOfObjectsInList(), usedCartonHeight);
     }
 }
