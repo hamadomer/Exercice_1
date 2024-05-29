@@ -12,5 +12,6 @@ enum TypeOfCarton {
     Book,
     Cloth,
     Figurine,
-    Ball
+    Ball,
+    Carton
 }

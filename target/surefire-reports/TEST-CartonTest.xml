@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="CartonTest" time="0.025" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="CartonTest" time="0.049" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.23+9-LTS"/>
@@ -65,7 +65,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="CartonTest" name="CartonTest.testCreateCartonsWithDiffrentTypes" time="0.006"/>
+  <testcase classname="CartonTest" name="CartonTest.testCreateCartonsWithDiffrentTypes" time="0.031"/>
+  <testcase classname="CartonTest" name="CartonTest.testAddBallToBookCartons" time="0.018"/>
+  <testcase classname="CartonTest" name="CartonTest.testAddCartonToBallCarton" time="0"/>
+  <testcase classname="CartonTest" name="CartonTest.testCanNotAddBallAfterAddingCarton" time="0"/>
   <testcase classname="CartonTest" name="CartonTest.testCartonConstructorAndGetters" time="0"/>
-  <testcase classname="CartonTest" name="CartonTest.testAddBallToBookCarton" time="0.019"/>
+  <testcase classname="CartonTest" name="CartonTest.testTheTotalNumberOfItemsInCartonAndifFoundSubCarton" time="0"/>
 </testsuite>
