@@ -8,6 +8,11 @@ abstract class Item {
         this.size = size;
         this.typeOfCarton = typeOfCarton;
     }
+    
+    public Item(String name, TypeOfCarton typeOfCarton) {
+        this.name = name;
+        this.typeOfCarton = typeOfCarton;
+    }
 
     public String getName() {
         return name;

@@ -13,15 +13,15 @@ public class CartonTest {
     @Test
     public void testCreateCartonsWithDiffrentTypes() {
         Carton bookCarton = new Carton(100, TypeOfCarton.Book);
-        Carton ballCarton = new Carton(100, TypeOfCarton.Ball);
+        Carton clothCarton = new Carton(100, TypeOfCarton.Cloth);
         
         assertEquals("The Carton has 0 objects and the height used is 0", bookCarton.toString());
         assertEquals("The Carton has 0 objects and the height used is 0", bookCarton.toString());
         
         bookCarton.addObject(new Book("The 3 body problem", 30));
-        ballCarton.addObject(new Ball("Basketball", 20));
+        clothCarton.addObject(new Cloth("T shirt", 20));
         assertEquals("The Carton has 1 objects and the height used is 30", bookCarton.toString());
-        assertEquals("The Carton has 1 objects and the height used is 20", ballCarton.toString());
+        assertEquals("The Carton has 1 objects and the height used is 20", clothCarton.toString());
     }
 
     @Test

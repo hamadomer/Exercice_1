@@ -1,5 +1,13 @@
 class Ball extends Item {
-    public Ball(String name, int size) {
-        super(name, size, TypeOfCarton.Ball);
+    private int ballDiameter;
+    
+    public Ball(String name, int BallDiameter) {
+        super(name, TypeOfCarton.Ball);
+        this.ballDiameter = ballDiameter;
+    }
+    
+    @Override
+    public int getSize() {
+        return this.ballDiameter;
     }
 }

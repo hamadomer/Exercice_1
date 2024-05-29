@@ -12,6 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
         Carton carton = new Carton(100, TypeOfCarton.Cloth);
-        carton.addObject(new Ball("BasketBall", 27));
+        carton.addObject(new Cloth("BasketBall", 27));
+        carton.getUsedCartonHeight();
+        carton.toString();
     }
 }

@@ -1,5 +1,13 @@
 class Cloth extends Item {
-    public Cloth(String name, int size) {
-        super(name, size, TypeOfCarton.Cloth);
+    private int clothWidth;
+    
+    public Cloth(String name, int clothWidth) {
+        super(name, TypeOfCarton.Cloth);
+        this.clothWidth = clothWidth;
+    }
+    
+    @Override
+    public int getSize() {
+        return this.clothWidth;
     }
 }

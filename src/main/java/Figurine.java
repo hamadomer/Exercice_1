@@ -1,5 +1,13 @@
 class Figurine extends Item {
-    public Figurine(String name, int size) {
-        super(name, size, TypeOfCarton.Figurine);
+    private int figurineHight;
+    
+    public Figurine(String name, int figurineHight) {
+        super(name, TypeOfCarton.Figurine);
+        this.figurineHight = figurineHight;
+    }
+    
+    @Override
+    public int getSize() {
+        return this.figurineHight;
     }
 }

@@ -40,6 +40,7 @@ public class Carton<T extends Item> {
     }
 
     public int getUsedCartonHeight() {
+        System.out.println(this.usedCartonHeight);
         return this.usedCartonHeight;
     }
 
@@ -53,6 +54,6 @@ public class Carton<T extends Item> {
 
     @Override
     public String toString() {
-        return String.format("The Carton has %d objects and the height used is %d", getNumberOfObjectsInList(), usedCartonHeight);
+        return String.format("The Carton has %d objects and the height used is %d", getNumberOfObjectsInList(), getUsedCartonHeight());
     }
 }
