@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.FormatFlagsConversionMismatchException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -20,6 +21,8 @@ public class DataController {
 
         if (lines.length > 0) {
             dataMap.put("Title", lines[0].trim());
+        } else {
+            throw  new FormatFlagsConversionMismatchException("File is empty", 'F');
         }
 
         for (String line : lines) {

@@ -1,5 +1,7 @@
 package org.example;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -7,6 +9,7 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -16,8 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 public class PdfHandler {
+
+    private static final Logger logger = LogManager.getLogger("CSVErrorLogger");
 
     DataController object = new DataController();
 
@@ -42,27 +46,39 @@ public class PdfHandler {
     }
 
     public Data pdfToData(String path) throws IOException {
+        System.out.println("1");
         File file = new File(path);
         if (!file.exists()) {
+            System.out.println("2");
             throw new IOException("Path not found: " + path);
         }
 
         try (PDDocument document = Loader.loadPDF(file)) {
+            System.out.println("3");
             PDFTextStripper pdfStripper = new PDFTextStripper();
             String text = pdfStripper.getText(document);
-
+            System.out.println("4");
             String[] lines = text.split("\n");
+            System.out.println("5");
             Map<String, String> values = new HashMap<>();
-
-            for (int i =  0; i < lines.length; i++) {
-               if(i == 0) {
-                   values.put("Title", lines[i].trim());
-               } else {
-                   String[] keyValue = lines[i].split(":");
-                   if (keyValue.length == 2) {
-                       values.put(keyValue[0].trim(), keyValue[1].trim());
-                   }
-               }
+            System.out.println("6");
+            if (text.trim().isEmpty()) {
+                String errorMsg = String.format("%s;%s", path, "File is empty");
+                logger.error(errorMsg);
+            }
+            System.out.println("7");
+            for (int i = 0; i < lines.length; i++) {
+                if (i == 0) {
+                    values.put("Title", lines[i].trim());
+                } else {
+                    String[] keyValue = lines[i].split(":");
+                    if (keyValue.length == 2) {
+                        values.put(keyValue[0].trim(), keyValue[1].trim());
+                    } else  {
+                        String errorMsg = String.format("%s;%s", path, "The file doesn't respect the key : value format");
+                        logger.error(errorMsg);
+                    }
+                }
             }
 
             return new Data(values.get("Title"), values.get("Nom"), values.get("Prénom"), values.get("Facture"), values.get("Date"), values.get("Objet"), values.get("Montant"));

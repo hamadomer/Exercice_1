@@ -1,0 +1,3 @@
+src/main/resources/empty.pdf;File is empty
+src/main/resources/test3.pdf;The file doesn't respect the key : value format
+src/main/resources/test4.csv;empty Csv file
